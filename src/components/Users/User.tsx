@@ -3,13 +3,18 @@ import {IUser} from "../../store/reducers/users";
 
 interface IProps {
     user: IUser;
+    update(user: Partial<IUser>): void;
 }
 
-const User: React.FC<IProps> = ({user}) => {
+const User: React.FC<IProps> = ({user, update}) => {
+    const updateStatus = () => update({...user, status: user.status === "active" ? "locked" : "active"});
     return (
-        <div>
-            {user.first_name + user.last_name}
-        </div>
+        <React.Fragment>
+            <p className="user">
+                {`${user.first_name} ${user.last_name}`}
+            </p>
+            <p className="status" onClick={updateStatus}>{user.status}</p>
+        </React.Fragment>
     );
 };
 

@@ -1,0 +1,36 @@
+* {
+  font-family: 'Montserrat', sans-serif;
+}
+
+#UsersList {
+  h2 {
+    text-align: center;
+  }
+  .controls {
+    input {
+      border-radius: 4px;
+      width: 100%;
+    }
+    .pager {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .arrow {
+        font-size: 2em;
+      }
+    }
+
+  }
+  width: 100%;
+  .user {
+    display: inline-block;
+    width: 80%;
+    border-radius: 5px;
+    word-break: break-word;
+  }
+  .status {
+    display: inline-block;
+    width: 20%;
+  }
+}
