@@ -1,6 +1,6 @@
 import { Pages } from "./store/reducers/pageState";
 
-export const serverUrl = "http://js-assessment-backend.herokuapp.com/";
+export const serverUrl = "http://js-assessment-backend.herokuapp.com";
 
 interface IHash {
     page?: Pages;

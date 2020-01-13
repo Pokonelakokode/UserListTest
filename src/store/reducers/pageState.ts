@@ -11,18 +11,18 @@ export enum Pages {
     NEW = "NEW",
 }
 
-interface IPageStateActions {
+export interface IPageStateActions {
     SET: PayloadAction<Partial<IPageState>>;
 }
 
 interface IPageState {
-    readonly ready: boolean;
+    readonly loading: boolean;
     readonly currentPage: Pages,
 }
 
 const initialState: IPageState = {
     currentPage: getHash().page || Pages.ALL,
-    ready: false,
+    loading: false,
 };
 
 export const pageState = createSlice({
@@ -40,3 +40,4 @@ export const pageState = createSlice({
 });
 
 export const pageStateReducer = pageState.reducer;
+export const pageStateActions = pageState.actions;
