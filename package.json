@@ -6,7 +6,8 @@
   "author": "Pokonelakokode",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "test": "jest"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.2.1",
