@@ -12,12 +12,12 @@ interface IProps {
 const User: React.FC<IProps> = ({user, update, navigate}) => {
     const updateStatus = () => update({...user, status: user.status === "active" ? "locked" : "active"});
     return (
-        <React.Fragment>
-            <p className="user" onClick={() => {navigate({page: Pages.USER, userId: user.id});}}>
+        <div className="users-list-item">
+            <p className="name" onClick={() => {navigate({data: {page: Pages.USER, userId: user.id}}); }}>
                 {`${user.first_name} ${user.last_name}`}
             </p>
-            <p className="status" onClick={updateStatus}>{user.status}</p>
-        </React.Fragment>
+            <button className={`status ${user.status}`} onClick={updateStatus}>{user.status}</button>
+        </div>
     );
 };
 

@@ -3,22 +3,30 @@ import {useDispatch, useSelector} from "react-redux";
 import { bindActionCreators } from "redux";
 import {router} from "../router";
 import {mainSelector} from "../store";
-import {navigate} from "../store/actions/hashRouter";
-import {Pages} from "../store/reducers/pageState";
-import {getHash} from "../utils";
+import {getPage, getUserId, navigate} from "../store/actions/hashRouter";
+import Loader from "./Loader";
+import {pageStateSelector} from "../store/reducers/pageState";
 
 const App: React.FC = (props) => {
-    const {pageState: {page}} = useSelector(mainSelector);
+    const {page, loading} = useSelector(pageStateSelector);
     const actions = bindActionCreators({navigate }, useDispatch());
     React.useEffect(() => {
         const fn = () => actions.navigate({
-            page: getHash().page || Pages.ALL,
-            userId: getHash().userId || null,
+            data: {
+                page: getPage(),
+                userId: getUserId(),
+            },
+            push: true,
          });
         window.addEventListener("popstate", fn);
         return () => window.removeEventListener("popstate", fn);
     }, []);
-    return router(page);
+    return (
+        <React.Fragment>
+            {router(page)}
+            <Loader/>
+        </React.Fragment>
+    );
 };
 
 export default App;

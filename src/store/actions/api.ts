@@ -17,7 +17,17 @@ export const updateUser = async (user: Partial<IUser>): Promise<any> => {
     return user;
 };
 
+export const createUser = async (user: Partial<IUser>): Promise<any> => {
+    const newUser = await fetch(`${serverUrl}/users`, {
+        body: JSON.stringify(user),
+        headers: {"Content-Type": "application/json"},
+        method: "POST",
+    });
+    return await newUser.json();
+}
+
 export const apiActions = {
+    createUser: createAction<Partial<IUser>>("UPDATE_USER"),
     loadUsers: createAction("LOAD_USERS"),
     updateUser: createAction<Partial<IUser>>("UPDATE_USER"),
 };

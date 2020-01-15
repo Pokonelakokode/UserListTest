@@ -6,7 +6,7 @@ export const serverUrl = "http://js-assessment-backend.herokuapp.com";
 
 interface IHash {
     page?: Pages;
-    userId?: number;
+    userId?: string;
 }
 
 export function getHash(): IHash {
@@ -18,13 +18,14 @@ export function getHash(): IHash {
     }, {});
 }
 
-export function setHash(data: { [key: string]: any } = {}, push= true) {
+export function setHash(data: { [key: string]: any } = {}, noPush= false) {
     data = isObject(data) ? data : {};
     const hash = Object.keys(data).reduce((acc: string, el: any) => {
+        if (data[el] === null || data[el] === undefined) {return acc}
         acc += `${el}=${data[el]}&`;
         return acc;
     }, "/#").slice(0, -1);
-    push ? history.pushState(data, "", hash) : history.replaceState(data, "", hash);
+    noPush ? history.replaceState(data, "", hash) : history.pushState(data, "", hash);
 }
 
 export function isObject(value: any) {

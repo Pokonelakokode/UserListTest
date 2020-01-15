@@ -1,11 +1,12 @@
 import * as React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {mainSelector} from "../../store";
-import { userActions} from "../../store/reducers/users";
+import {userActions} from "../../store/reducers/users";
 import Controls from "./Controls";
 import User from "./User";
-import { bindActionCreators } from "redux";
-import { navigate } from "../../store/actions/hashRouter";
+import {bindActionCreators} from "redux";
+import {navigate} from "../../store/actions/hashRouter";
+import {Pages} from "../../store/reducers/pageState";
 
 export interface IUsersState {
     search: string;
@@ -33,9 +34,12 @@ const Users: React.FC = (props) => {
         <div id="UsersList">
             <h2>Users</h2>
             <Controls setState={setState} state={state} length={filteredUsers.length}/>
-            <div className="user-list">
+            <div className="users-list">
                 {usersComp}
             </div>
+            <button className="new-user" onClick={() => actions.navigate({data: {page: Pages.NEW}})}>
+                New User
+            </button>
 
         </div>
     );

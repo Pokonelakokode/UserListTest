@@ -1,5 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {getHash} from "../../utils";
+import { RootState } from "..";
 
 enum PageStateActionTypes {
     SET = "SET",
@@ -8,9 +9,10 @@ enum PageStateActionTypes {
 }
 
 export enum Pages {
-    ALL = "",
+    ALL = "all",
     USER = "user",
     NEW = "new",
+    EDIT = "edit",
 }
 
 export interface IPageStateActions {
@@ -23,12 +25,14 @@ interface IPageState {
     readonly loading: boolean;
     readonly page: Pages;
     readonly userId: number | null;
+    readonly message: string;
 }
 
 const initialState: IPageState = {
     loading: false,
+    message: "",
     page: getHash().page || Pages.ALL,
-    userId: null,
+    userId: getHash().userId ? parseInt(getHash().userId!, 10) : null,
 };
 
 export const pageState = createSlice({
@@ -58,6 +62,8 @@ export const pageState = createSlice({
             },
     },
 });
+
+export const pageStateSelector = (state: RootState) => state.pageState;
 
 export const pageStateReducer = pageState.reducer;
 export const pageStateActions = pageState.actions;

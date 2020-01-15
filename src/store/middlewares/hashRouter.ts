@@ -1,5 +1,5 @@
 import {Dispatch, MiddlewareAPI} from "redux";
-import {actionMatcher, setHash} from "../../utils";
+import {getHash, setHash} from "../../utils";
 import {navigate} from "../actions/hashRouter";
 import {RootActions, RootState} from "../index";
 import {pageStateActions} from "../reducers/pageState";
@@ -9,7 +9,10 @@ export const hashRouter = (store: MiddlewareAPI<any, RootState>) =>
         async (action: RootActions) => {
             next(action);
             if (navigate.match(action)) {
-                setHash(action.payload);
-                store.dispatch(pageStateActions.SET(action.payload));
+                setHash(action.payload.data, action.payload.push || false);
+                store.dispatch(pageStateActions.SET({
+                    page: action.payload.data.page,
+                    userId: action.payload.data.userId,
+                }));
             }
 };

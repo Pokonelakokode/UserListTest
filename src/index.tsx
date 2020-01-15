@@ -5,6 +5,7 @@ import App from "./components/App";
 import {store} from "./store";
 import {apiActions} from "./store/actions/api";
 import "./style.scss";
+import {userActions} from "./store/reducers/users";
 
 render(
     <Provider store={store}>
@@ -12,4 +13,4 @@ render(
     </Provider>,
     document.getElementById("app"),
 );
-store.dispatch(apiActions.loadUsers());
+store.dispatch(userActions.LOAD([]));

@@ -38,7 +38,10 @@ const Controls: React.FC<IProps> = ({setState, state, length}) => {
                 >
                     ⇐
                 </div>
-                <div>Users: {length}</div>
+                <div>
+                    Users: <b>{length}</b><br/>
+                    Page: <b>{state.page + 1}/{Math.ceil(length / state.count)}</b>
+                </div>
                 <div className="arrow"
                      onClick={() => setPage(+1)}
                 >

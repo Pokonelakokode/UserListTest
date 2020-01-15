@@ -1,4 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {RootState} from "../index";
 
 export enum UserActionTypes {
     LOAD = "LOAD",
@@ -44,6 +45,10 @@ export const users = createSlice({
             },
     },
 });
+
+export const userSelector = (state: RootState): IUser | null => {
+    return state.users.find((user) => user.id === state.pageState.userId) || null;
+};
 
 export const userActions = users.actions;
 export const usersReducer = users.reducer;
