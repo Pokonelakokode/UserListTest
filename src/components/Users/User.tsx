@@ -5,12 +5,12 @@ import {IUser} from "../../store/reducers/users";
 
 interface IProps {
     user: IUser;
-    update(user: Partial<IUser>): void;
+    update(action:{user: Partial<IUser>, redirect?: boolean}): void;
     navigate(action: INavigateAction): void;
 }
 
 const User: React.FC<IProps> = ({user, update, navigate}) => {
-    const updateStatus = () => update({...user, status: user.status === "active" ? "locked" : "active"});
+    const updateStatus = () => update({user: {...user, status: user.status === "active" ? "locked" : "active"}});
     return (
         <div className="users-list-item">
             <p className="name" onClick={() => {navigate({data: {page: Pages.USER, userId: user.id}}); }}>

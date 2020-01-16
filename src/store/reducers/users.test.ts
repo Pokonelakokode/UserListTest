@@ -24,7 +24,7 @@ describe("users reducers", () => {
     });
     it("should be able to update", () => {
         store = createStore(usersReducer, testData);
-        store.dispatch(userActions.UPDATE({...testData[0], first_name: "TEST2"}));
+        store.dispatch(userActions.UPDATE({user: {...testData[0], first_name: "TEST2"}}));
         expect(store.getState()[0].first_name).toBe("TEST2");
     });
     it("should be able to add", () => {

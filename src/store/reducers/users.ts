@@ -5,12 +5,14 @@ export enum UserActionTypes {
     LOAD = "LOAD",
     ADD = "ADD",
     UPDATE = "UPDATE",
+    SET_STATUS = "SET_STATUS",
 }
 
 export interface IUserActions {
     LOAD: PayloadAction<IUser[]>;
     ADD: PayloadAction<IUser>;
-    UPDATE: PayloadAction<Partial<IUser>>;
+    UPDATE: PayloadAction<{user: Partial<IUser>, redirect?: boolean}>;
+    SET_STATUS: PayloadAction<Partial<IUser>>;
 }
 
 export interface IUser {
@@ -41,7 +43,10 @@ export const users = createSlice({
             },
         [UserActionTypes.UPDATE]:
             (state, action: IUserActions["UPDATE"]) => {
-                return state.map((user) => user.id === action.payload.id ? {...user, ...action.payload} : user);
+                return state.map((user) => user.id === action.payload.user.id ?
+                    {...user, ...action.payload.user} :
+                    user,
+                );
             },
     },
 });

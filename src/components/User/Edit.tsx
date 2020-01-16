@@ -23,7 +23,7 @@ const Edit: React.FC = (props) => {
     useEffect(() => {
         setUser(selectedUser);
     }, [selectedUser.id]);
-    const commit = () => user.id ? actions.updateUser(user) : actions.createUser(user as IUser);
+    const commit = () => user.id ? actions.updateUser({user, redirect: true}) : actions.createUser(user as IUser);
     const data = user.id ? {page: Pages.USER, userId: user.id} : {page: Pages.ALL};
     return (
         <div className="user-form">
