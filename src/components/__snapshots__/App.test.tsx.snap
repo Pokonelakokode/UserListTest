@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App component should be able to render 1`] = `
+<div
+  id="UsersList"
+>
+  <h2>
+    Users
+  </h2>
+  <div
+    className="controls"
+  >
+    <input
+      onChange={[Function]}
+      placeholder="Search"
+      value=""
+    />
+    <div
+      className="pager"
+    >
+      <div
+        className="arrow"
+        onClick={[Function]}
+      >
+        ⇐
+      </div>
+      <div>
+        Users: 
+        <b>
+          0
+        </b>
+        <br />
+        Page: 
+        <b>
+          1
+          /
+          0
+        </b>
+      </div>
+      <div
+        className="arrow"
+        onClick={[Function]}
+      >
+        ⇒
+      </div>
+    </div>
+  </div>
+  <div
+    className="users-list"
+  />
+  <button
+    className="new-user"
+    onClick={[Function]}
+  >
+    New User
+  </button>
+</div>
+`;

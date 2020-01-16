@@ -4,8 +4,6 @@ import { RootState } from "..";
 
 enum PageStateActionTypes {
     SET = "SET",
-    SET_PAGE = "SET_PAGE",
-    SET_USER = "SET_USER",
 }
 
 export enum Pages {
@@ -17,11 +15,9 @@ export enum Pages {
 
 export interface IPageStateActions {
     SET: PayloadAction<Partial<IPageState>>;
-    SET_USER: PayloadAction<number | null>;
-    SET_PAGE: PayloadAction<Pages>;
 }
 
-interface IPageState {
+export interface IPageState {
     readonly loading: boolean;
     readonly page: Pages;
     readonly userId: number | null;
@@ -44,20 +40,6 @@ export const pageState = createSlice({
                 return {
                     ...state,
                     ...action.payload,
-                };
-            },
-        [PageStateActionTypes.SET_PAGE]:
-            (state, action: IPageStateActions["SET_PAGE"]) => {
-                return {
-                    ...state,
-                    currentPage: action.payload,
-                };
-            },
-        [PageStateActionTypes.SET_USER]:
-            (state, action: IPageStateActions["SET_USER"]) => {
-                return {
-                    ...state,
-                    selectedUser: action.payload,
                 };
             },
     },
